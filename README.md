@@ -45,4 +45,16 @@ To check the entries saved to the database:
 
 ```
 sudo docker exec -i mysql-server mysql -uroot -ppassword  <<< "use scraper; select * from product;"
-``
+```
+
+## Design
+
+## Follow-ups
+
+- Ship application in container;
+- Skip products already processed or schedule;
+- More fields extracted;
+- Abstraction of ProductHandler to support more data sources;
+- Handle different locale sources gracefully;
+- Optimize shipping supplier extraction;
+- Parallelize scraping;
