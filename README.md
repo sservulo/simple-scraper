@@ -1,5 +1,7 @@
 # Simple scraper
 
+This is the repository for simple e-commerce portal web scraping to extract product information.
+
 ## Requirements
 
 ### Docker
@@ -48,6 +50,12 @@ sudo docker exec -i mysql-server mysql -uroot -ppassword  <<< "use scraper; sele
 ```
 
 ## Design
+
+The overall architecture relies on two main components: the product model and the product handler, where the business logic is encapsulated to process given webpages and extract relevant information, the model maps this information between the transient dataclass and the persisted entity on the database.
+
+For each target webpage received by the application entry point, a handler is created and process the basic metadata (product name, price, brand, etc.) and handles the iteractive process required to access shipping providers available, it's important to notice that while the application in it's current form is not able to handle generic e-commerce portals, it can be extended to process particular portals by abstracting ProductHandler and adjusting the workflow to portals of interest in extended classes, for example, by implementing specific `get_basic_metadata` and `get_shipping_suppliers`.
+
+One relevatn point in this discussion is that, when extending the project to support more data sources, portals with different currency format (use of '.' instead of ',' for decimals may need adusting) and while a somewhat "generic" handler can be structured, each source might have varying degrees of complexity to retrieve similar data.
 
 ## Follow-ups
 
